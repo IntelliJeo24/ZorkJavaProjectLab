@@ -128,7 +128,7 @@ public class main {
 		String answer = "";
 		String command, object, object2;
 		System.out.println(
-				"You get up in a bedroom, you have a headache and you don't know where you are\nand how you did come here. You just know that you have to escape!\nYou are in a small-sized bedroom. There is a blue_door in east of the room.\nThere is a wall clock and a table in north, bed in west and a wardrobe in south of the room.\nAlso, there is a pillow on the bed and there is a cd_player on the table. ");
+				"\n\n-------------------------------------------------------------------------------\nWelcome to THE ESCAPE.\n\nENJOY!\n-------------------------------------------------------------------------------\nYou get up in a bedroom, you have a headache and you don't know where you are\nand how you did come here.You are in a small-sized bedroom.\n\n -Oh i need to escape from here! \n\n There is a blue_door in east of the room.\nThere is a wall clock and a table in north, bed in west and a wardrobe in south of the room.\nAlso, there is a pillow on the bed and there is a cd_player on the table. ");
 		while (game == true) {
 			do {
 				RoomSelect();
