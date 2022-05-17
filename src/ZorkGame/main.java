@@ -1,9 +1,39 @@
 package ZorkGame;
 
+import com.sun.tools.javac.Main;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class main {
+public class main implements java.io.Serializable {
+	private static void savegame() {
+		try {
+			FileOutputStream fos = new FileOutputStream("Adv.sav");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(game);
+			oos.flush();
+			oos.close();
+			System.out.print("Game Saved\n");
+		}
+		catch (Exception e) {
+			System.out.print("Serialization Error! Can't save data.\n"
+					+ e.getClass() + ": " + e.getMessage() + "\n");
+		}
+	}
+
+	private static void LoadGame() {
+		try {
+			FileInputStream fis = new FileInputStream("Adv.sav");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			game = (boolean) ois.readObject();
+			ois.close();
+			System.out.print("\n---Game loaded---\n");
+		} catch (Exception e) {
+			System.out.print("Serialization Error! Can't load data.\n ");
+			System.out.print(e.getClass() + ": " + e.getMessage() + "\n" );
+		}
+	}
+
 	public static final String[] PossibleVerbs = { "open", "close", "examine", "take", "use", "move", "inventory" };
 	// name, description, portatable, openable, usable, unlocked, opened
 
@@ -75,7 +105,28 @@ public class main {
 	static boolean game = true;
 	static boolean hungryDog = true;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		BufferedReader in;
+		String innput;
+		String output = "";
+		game = new main();
+		in = new BufferedReader(new InputStreamReader(System.in));
+		do {
+			System.out.println("> ");
+			innput = in.readLine();
+			switch (innput) {
+				case "save":
+					savegame();
+					break;
+				case "load":
+					LoadGame();
+					break;
+				default:
+					output = (innput);
+					break;
+			}
+			System.out.println(output);
+		} while (!"q".equals(innput));
 
 		ObjectsInBedroom.add(bed);
 		ObjectsInBedroom.add(clock);
