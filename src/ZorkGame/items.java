@@ -1,6 +1,6 @@
 package ZorkGame;
 
-public class items {
+public class items implements java.io.Serializable {
 	public String nameOfItem;
 	public String descriptionOfItem;
 	public boolean canBeTaken;
